@@ -6,6 +6,7 @@ sys.path.append("./pylinguistics/pylinguistics/")
 
 import Pylinguistics as pl
 import reviewparser as rp
+import numpy as np
 
 if 'TRAVIS' in os.environ:
     #SAMPLE TEXT
@@ -31,3 +32,7 @@ print('Features: %s' %objpl.getFeatures())
 #print('POS_TAGS: %s' %objpl.tokens)
 print('POS_TAGS: %s' %objpl.postag)
 #print(len(objpl.postag))
+a = [1,4,6]
+b = [1,2,3] 
+print np.correlate(a, b)
+print np.corrcoef(a,b)
