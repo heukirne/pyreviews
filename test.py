@@ -1,14 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import os, sys
-import chardet
+import os, sys, chardet
 
 sys.path.append("./pylinguistics/pylinguistics/")
 
 import Pylinguistics as pl
-import pandas as pd
+import reviewparser as rp
 
-if 'TRAVIS' in os.environ and os.environ['TRAVIS'] == 'yes':
+if 'TRAVIS' in os.environ:
     #SAMPLE TEXT
     text = "O rato roeu a roupa do rei de Roma."
     print text
@@ -17,11 +16,12 @@ else:
     # READ FILE
     file = open('reviews/Celular e Smartphone/5.0/0_100112.txt', 'r')
     text = file.read()
-    
     print('Charset: %s' %chardet.detect(text))
-    
     objpl = pl.text(text.decode(chardet.detect(text)['encoding']))
 
+    # READ XML
+    objreview = rp.parseit("reviews/Celular e Smartphone/5.0/0_100112.xml")
+    objpl = pl.text(objreview.opinion)
 
 objpl.setLanguage("pt-br");
 
