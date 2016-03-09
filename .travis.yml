@@ -1,0 +1,9 @@
+language: python
+
+python:
+
+install:
+  - pip install --user -r requirements.txt
+  - pip install --user git+git://github.com/vwoloszyn/pylinguistics.git
+
+script: nosetests
