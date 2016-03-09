@@ -14,6 +14,7 @@ listReadDown = []
 listUp = []
 listDown = []
 count = 0
+countThumbs = 0
 
 mypath = "reviews/Celular e Smartphone/5.0/"
 for (dirpath, dirnames, filenames) in walk(mypath):
@@ -39,29 +40,29 @@ for (dirpath, dirnames, filenames) in walk(mypath):
             #print('ThumbsDown: %s' %objreview.thumbsdown)
 
             # APPEND LISTS
-            if len(objreview.opinion) > 10 and int(objreview.thumbsup) > 0:
-                listReadUp.append(float(objpl.getFeatures()['redability']))
-                listUp.append(int(objreview.thumbsup))
+            if objreview.thumbsup != objreview.thumbsdown:
+                countThumbs += 1
+                if len(objreview.opinion) > 10 and int(objreview.thumbsup) > 0:
+                    listReadUp.append(float(objpl.getFeatures()['nounIncidence']))
+                    listUp.append(int(objreview.thumbsup))
 
-            if len(objreview.opinion) > 10 and int(objreview.thumbsup) > 0:
-                listReadDown.append(float(objpl.getFeatures()['redability']))
-                listDown.append(int(objreview.thumbsdown))
+                if len(objreview.opinion) > 10 and int(objreview.thumbsdown) > 0:
+                    listReadDown.append(float(objpl.getFeatures()['nounIncidence']))
+                    listDown.append(int(objreview.thumbsdown))
 
-            if count % 100 == 0:
-                sys.stdout.write(str(total - count))
-                sys.stdout.write(',')
-                sys.stdout.flush()
+                if count % 100 == 0:
+                    sys.stdout.write(str(total - count))
+                    sys.stdout.write(',')
+                    sys.stdout.flush()
 
             # DEBUG
             #break
 
     print ' '
-    print 'Redability x ThumbsUp Cross-Correlation'
-    print np.correlate(listReadUp, listUp)
+    print('Count Thumbs: %s' %countThumbs)
+    print ' '
     print 'Redability x ThumbsUp Pearson Correlation Coefficients'
     print np.corrcoef(listReadUp,listUp)
-    print 'Redability x ThumbsDown Cross-Correlation'
-    print np.correlate(listReadDown, listDown)
     print 'Redability x ThumbsDown Pearson Correlation Coefficients'
     print np.corrcoef(listReadDown,listDown)
 
