@@ -5,7 +5,7 @@ python:
 
 install:
   - pip install -r requirements.txt
-  - pip install git+git://github.com/vwoloszyn/pylinguistics.git
   - python install.py
 
-script: nosetests
+script:
+  - python test.py

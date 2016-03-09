@@ -1,0 +1,3 @@
+[submodule "pylinguistics"]
+	path = pylinguistics
+	url = https://github.com/vwoloszyn/pylinguistics.git
