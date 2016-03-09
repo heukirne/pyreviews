@@ -22,6 +22,8 @@ else:
     # READ XML
     objreview = rp.parseit("reviews/Celular e Smartphone/5.0/0_100112.xml")
     objpl = pl.text(objreview.opinion)
+    print('ThumbsUp: %s' %objreview.thumbsup)
+    print('ThumbsDown: %s' %objreview.thumbsdown)
 
 objpl.setLanguage("pt-br");
 
