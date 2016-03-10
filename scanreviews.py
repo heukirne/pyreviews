@@ -16,7 +16,7 @@ listDown = []
 count = 0
 countThumbs = 0
 
-mypath = "reviews/Celular e Smartphone/5.0/"
+mypath = "reviews/Celular_e_Smartphone/5.0/"
 for (dirpath, dirnames, filenames) in walk(mypath):
     print('Total: %s' %len(filenames))
     total = len(filenames)
@@ -33,6 +33,7 @@ for (dirpath, dirnames, filenames) in walk(mypath):
 
             # DEBUG
             #print reviewfile
+            #print objpl.summary()
             #print len(objreview.opinion) > 10
             #print objreview.opinion
             #print('Redability: %s' %objpl.getFeatures()['redability'])
@@ -43,11 +44,11 @@ for (dirpath, dirnames, filenames) in walk(mypath):
             if objreview.thumbsup != objreview.thumbsdown:
                 countThumbs += 1
                 if len(objreview.opinion) > 10 and int(objreview.thumbsup) > 0:
-                    listReadUp.append(float(objpl.getFeatures()['nounIncidence']))
+                    listReadUp.append(float(objpl.getFeatures()['redability']))
                     listUp.append(int(objreview.thumbsup))
 
                 if len(objreview.opinion) > 10 and int(objreview.thumbsdown) > 0:
-                    listReadDown.append(float(objpl.getFeatures()['nounIncidence']))
+                    listReadDown.append(float(objpl.getFeatures()['redability']))
                     listDown.append(int(objreview.thumbsdown))
 
                 if count % 100 == 0:

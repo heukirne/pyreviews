@@ -17,7 +17,7 @@ mostUpfile = ""
 mostDowncount = 0
 mostDownfile = ""
 
-mypath = "reviews/Celular e Smartphone/5.0/"
+mypath = "reviews/Celular_e_Smartphone/5.0/"
 for (dirpath, dirnames, filenames) in walk(mypath):
     print('Total: %s' %len(filenames))
     total = len(filenames)
