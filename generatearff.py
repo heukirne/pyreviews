@@ -33,6 +33,8 @@ for (dirpath, dirnames, filenames) in walk(mypath):
                 if noheader == 0:
                     for attr in objpl.getFeatures():
                         arff.write('@ATTRIBUTE ' + attr + '\tNUMERIC\n')
+                    arff.write('@ATTRIBUTE thumbsup\tNUMERIC\n')
+                    arff.write('@ATTRIBUTE thumbsdown\tNUMERIC\n')
                     arff.write('@DATA\n')
                     noheader = 1
 
@@ -51,7 +53,7 @@ for (dirpath, dirnames, filenames) in walk(mypath):
                     sys.stdout.flush()
 
             # DEBUG
-            #break
+            break
 
     arff.close();
     break
