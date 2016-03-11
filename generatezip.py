@@ -9,7 +9,8 @@ import reviewparser as rp
 from os import walk
 
 noheader = 0
-csvgz = gzip.open('reviews.csv.gz', 'wb')
+index = 0
+csvgz = gzip.open('experiments/reviews.csv.gz', 'wb')
 
 mypath = "reviews/"
 for (dirnone, categories, filenone) in walk(mypath):
@@ -42,13 +43,14 @@ for (dirnone, categories, filenone) in walk(mypath):
                                 # WRITE HEADER
                                 if noheader == 0:
                                     for attr in objpl.getFeatures():
-                                        csvgz.write(attr + ',')
+                                        csvgz.write(',' + attr)
                                     # WITH VALUES
-                                    csvgz.write('thumbsup,thumbsdown,stars,user,category,evaluation_date,recommends\n')
+                                    csvgz.write(',thumbsup,thumbsdown,stars,user,category,evaluation_date,recommends\n')
                                     noheader = 1
 
                                 # WRITE ATTRIBUTES
-                                attributes = ""
+                                index += 1
+                                attributes = str(index) + ","
                                 for attr in objpl.getFeatures():
                                     attributes += str(objpl.getFeatures()[attr]) + ','
                                 # WITH VALUES
@@ -58,7 +60,7 @@ for (dirnone, categories, filenone) in walk(mypath):
                                 attributes += objreview.user + ','
                                 attributes += objreview.category + ','
                                 attributes += objreview.evaluation_date + ','
-                                attributes += objreview.recommends + ','
+                                attributes += objreview.recommends
 
                                 csvgz.write(attributes + '\n');
 

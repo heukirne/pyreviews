@@ -3,3 +3,6 @@ reviews/
 *.arff
 *.gz
 *.csv
+experiments/.ipynb_checkpoints/
+experiments/*.gz
+experiments/*.csv

@@ -4,3 +4,4 @@ nlpnet
 pandas
 chardet
 unidecode
+matplotlib
