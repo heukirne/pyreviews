@@ -1,3 +1,5 @@
 reviews/
 *.pyc
 *.arff
+*.gz
+*.csv

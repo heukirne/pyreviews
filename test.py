@@ -7,6 +7,7 @@ sys.path.append("./pylinguistics/pylinguistics/")
 import Pylinguistics as pl
 import reviewparser as rp
 import numpy as np
+import pandas as pd
 
 if 'TRAVIS' in os.environ:
     #SAMPLE TEXT
@@ -14,17 +15,14 @@ if 'TRAVIS' in os.environ:
     print text
     objpl = pl.text(text)
 else:
-    # READ FILE
-    file = open('reviews/Celular e Smartphone/5.0/0_100112.txt', 'r')
-    text = file.read()
-    print('Charset: %s' %chardet.detect(text))
-    objpl = pl.text(text.decode(chardet.detect(text)['encoding']))
-
     # READ XML
-    objreview = rp.parseit("reviews/Celular e Smartphone/5.0/0_100112.xml")
+    objreview = rp.parseit("reviews/Celular_e_Smartphone/5.0/0_100112.xml")
     objpl = pl.text(objreview.opinion)
     print('ThumbsUp: %s' %objreview.thumbsup)
     print('ThumbsDown: %s' %objreview.thumbsdown)
+
+    # READ CSV
+    reviewscsv = pd.read_csv('reviews.csv.gz', compression='gzip')
 
 objpl.setLanguage("pt-br");
 
