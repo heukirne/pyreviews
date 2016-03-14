@@ -10,7 +10,7 @@ from os import walk
 
 noheader = 0
 index = 0
-csvgz = gzip.open('experiments/reviews.csv.gz', 'wb')
+csvgz = gzip.open('experiments/reviews-full.csv.gz', 'wb')
 
 mypath = "reviews/"
 for (dirnone, categories, filenone) in walk(mypath):
