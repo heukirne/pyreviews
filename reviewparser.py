@@ -1,6 +1,7 @@
 from xml.dom.minidom import parse
 import xml.dom.minidom
 from unidecode import unidecode
+import re
 
 def parseit(file):
     rp = reviewparser()
@@ -27,7 +28,7 @@ class reviewparser:
         self.thumbsdown = review.getElementsByTagName("thumbsDown")[0].getAttribute("value")
         self.stars = review.getElementsByTagName("stars")[0].getAttribute("value")
         self.user = unidecode(review.getElementsByTagName("user")[0].getAttribute("value"))
-        #remover caracteres nao-letra como > ,
+        self.user = re.sub('[^0-9a-zA-Z]+', '', self.user)
         self.category = unidecode(review.getElementsByTagName("category")[0].getAttribute("value"))
         self.evaluation_date = review.getElementsByTagName("evaluation_date")[0].getAttribute("value")
         self.recommends = review.getElementsByTagName("recommends")[0].getAttribute("value")

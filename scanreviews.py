@@ -29,7 +29,7 @@ for (dirpath, dirnames, filenames) in walk(mypath):
             # READ XML
             objreview = rp.parseit(mypath + reviewfile)
             objpl = pl.text(objreview.opinion)
-            objpl.language = "pt-br";
+            objpl.language = "pt";
 
             # DEBUG
             #print reviewfile

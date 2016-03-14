@@ -10,7 +10,7 @@ from os import walk
 
 noheader = 0
 index = 0
-csvgz = gzip.open('experiments/reviews-full.csv.gz', 'wb')
+csvgz = gzip.open('experiments/reviews.csv.gz', 'wb')
 
 mypath = "reviews/"
 for (dirnone, categories, filenone) in walk(mypath):
@@ -38,7 +38,7 @@ for (dirnone, categories, filenone) in walk(mypath):
 
                                 # READ XML
                                 objpl = pl.text(objreview.opinion)
-                                objpl.language = "pt-br";
+                                objpl.language = "pt";
 
                                 # WRITE HEADER
                                 if noheader == 0:
@@ -69,8 +69,8 @@ for (dirnone, categories, filenone) in walk(mypath):
                                     sys.stdout.write(',')
                                     sys.stdout.flush()
 
-                        break #file
-                break #version
+                        #break #file
+                #break #version
         #break #category
 
 csvgz.close();

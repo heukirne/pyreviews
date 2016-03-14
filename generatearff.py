@@ -35,7 +35,7 @@ for (dirnone, subdirs, filenone) in walk(mypath):
 
                         # READ XML
                         objpl = pl.text(objreview.opinion)
-                        objpl.language = "pt-br";
+                        objpl.language = "pt";
 
                         # WRITE HEADER
                         if noheader == 0:

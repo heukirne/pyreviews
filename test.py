@@ -24,7 +24,7 @@ else:
     reviewscsv = pd.read_csv('experiments/reviews.csv')
     reviewscsv.get('word_count')
 
-objpl.setLanguage("pt-br");
+objpl.setLanguage("pt");
 
 print('Features: %s' %objpl.getFeatures())
 #print('POS_TAGS: %s' %objpl.tokens)
