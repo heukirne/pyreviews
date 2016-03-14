@@ -12,12 +12,17 @@ def comparasionWithBoxPlot(field):
     #.plot(kind='box')
     
 
-def comparaMedias(database, field):
-    means=[database[field].mean()]
-    stds=[database[field].std()]
+def comparaMedias(database, field, categories):
 
+    means=[]
+    stds=[]
+    labels=[]
 
-    labels = ["Reviews"]
+    for category in categories:
+        means.append(database[database.category == category][field].mean())
+        stds.append(database[database.category == category][field].std())
+        labels.append(category)
+    
     ind = np.arange(len(means))
     width = 0.25
     colours = ['red','blue','green','yellow']
@@ -38,3 +43,18 @@ def comparaMedias(database, field):
     plt.title(field)
     plt.ylabel('Mean')
     plt.show()
+
+
+def plot_corr(df,size=10):
+    '''Function plots a graphical correlation matrix for each pair of columns in the dataframe.
+
+    Input:
+        df: pandas DataFrame
+        size: vertical and horizontal size of the plot'''
+
+    corr = df.corr()
+    fig, ax = plt.subplots(figsize=(size, size))
+    cax = ax.matshow(corr)
+    fig.colorbar(cax)
+    plt.xticks(range(len(corr.columns)), corr.columns, rotation=90);
+    plt.yticks(range(len(corr.columns)), corr.columns);
