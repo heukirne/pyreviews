@@ -1,7 +1,5 @@
 reviews/
 *.pyc
 *.arff
-*.gz
 *.csv
 experiments/.ipynb_checkpoints/
-experiments/*.csv
