@@ -5,5 +5,3 @@ pandas
 chardet
 unidecode
 matplotlib
-scipy
-scikit-learn
