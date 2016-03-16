@@ -6,3 +6,4 @@ chardet
 unidecode
 matplotlib
 jupyter
+notebook
