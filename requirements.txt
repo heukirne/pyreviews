@@ -5,3 +5,4 @@ pandas
 chardet
 unidecode
 matplotlib
+jupyter
