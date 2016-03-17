@@ -7,6 +7,7 @@ sys.path.append("./pylinguistics/pylinguistics/")
 import Pylinguistics as pl
 import reviewparser as rp
 import numpy as np
+import datetime
 from os import walk
 
 listReadUp = []
@@ -15,6 +16,9 @@ listUp = []
 listDown = []
 count = 0
 countThumbs = 0
+
+date_ini = 20160101
+date_end = 0
 
 mypath = "reviews/Celular_e_Smartphone/5.0/"
 for (dirpath, dirnames, filenames) in walk(mypath):
@@ -28,6 +32,15 @@ for (dirpath, dirnames, filenames) in walk(mypath):
 
             # READ XML
             objreview = rp.parseit(mypath + reviewfile)
+
+            objreview.evaluation_date
+            date = int(datetime.datetime.strptime(objreview.evaluation_date, "%d/%m/%Y").strftime("%Y%m%d"))
+
+            if date > date_end: #20130924
+                date_end = date
+            if date < date_ini: #20050915
+                date_ini = date
+
             objpl = pl.text(objreview.opinion)
             objpl.language = "pt";
 
@@ -66,5 +79,8 @@ for (dirpath, dirnames, filenames) in walk(mypath):
     print np.corrcoef(listReadUp,listUp)
     print 'Redability x ThumbsDown Pearson Correlation Coefficients'
     print np.corrcoef(listReadDown,listDown)
+
+    print('Date Ini: %i' %date_ini)
+    print('Date End: %i' %date_end)
 
     break
