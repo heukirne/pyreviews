@@ -9,6 +9,7 @@ import numpy as np
 
 df = {}
 i = 0 
+columns = []
 
 g = gzip.open('reviews-amazon.json.gz', 'r')
 for l in g:
@@ -19,11 +20,18 @@ for l in g:
 
 	if date > 20050915 and date < 20130924 and thumbs > 0:
 		try:
-	    
-			objpl = pl.text(review_json['reviewText'])
-
 			review_pd = []
-			review_pd.append(descriptive.word_count(objpl))
+
+			objpl = pl.text(review_json['reviewText'],'en')
+			#print objpl.getFeatures()
+
+			if columns == []:
+				for attr in objpl.getFeatures():
+					columns.append(attr)
+
+			for attr in objpl.getFeatures():
+				review_pd.append(str(objpl.getFeatures()[attr]))
+
 			review_pd.append(review_json['helpful'][0])
 			review_pd.append(review_json['helpful'][1])
 			review_pd.append(int(review_json['overall']))
@@ -35,9 +43,10 @@ for l in g:
 			sys.stdout.write('e')
 
 	i += 1
-	if i > 35000:
+	if i > 50000:
 		break
 
 reviews = pd.DataFrame.from_dict(df, orient='index')
-reviews.columns = ['word_count','thumbsup','thumbsdown','stars']
+columns.extend(['thumbsup','thumbsdown','stars'])
+reviews.columns = columns
 reviews.to_csv('experiments/amazon-help.csv.gz', compression='gzip')
