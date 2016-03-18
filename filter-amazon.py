@@ -1,6 +1,6 @@
 
 import sys, gzip, json, datetime
-sys.path.append("../pylinguistics/pylinguistics/")
+sys.path.append("./pylinguistics/pylinguistics/")
 
 import Pylinguistics as pl
 import descriptive
@@ -15,9 +15,11 @@ for l in g:
 	review_json = json.loads(l)
 
 	date = int(datetime.datetime.strptime(review_json['reviewTime'], "%m %d, %Y").strftime("%Y%m%d"))
+	thumbs = int(review_json['helpful'][0]) + int(review_json['helpful'][1])
 
-	if date > 20050915 and date < 20130924:
+	if date > 20050915 and date < 20130924 and thumbs > 0:
 		try:
+	    
 			objpl = pl.text(review_json['reviewText'])
 
 			review_pd = []
@@ -28,11 +30,11 @@ for l in g:
 
 			df[i] = review_pd
 
-			i += 1
 			sys.stdout.write(str(i))
 		except:
 			sys.stdout.write('e')
 
+	i += 1
 	if i > 35000:
 		break
 
