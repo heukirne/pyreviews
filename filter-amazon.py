@@ -43,7 +43,7 @@ for l in g:
 			sys.stdout.write('e')
 
 	i += 1
-	if i > 50000:
+	if i > 35000:
 		break
 
 reviews = pd.DataFrame.from_dict(df, orient='index')
